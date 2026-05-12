@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — InSite Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.4rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0);
+      box-shadow: none;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 20px rgba(0,0,0,0.07);
+      padding: 1rem 4rem;
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      text-decoration: none;
+      transition: color 0.4s, opacity 0.3s;
+    }
+    .nav-links a:hover { opacity: 0.65; }
+    #nav.scrolled .nav-links a { color: #1a1a1a; }
+
+    /* ─── PAGE HEADER ──────────────────────────────────── */
+    .page-header {
+      padding: 12rem 4rem 4rem;
+      background: #fff;
+      border-bottom: 1px solid #e8e0d8;
+    }
+    .page-header-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #b08a4a;
+      margin-bottom: 1rem;
+    }
+    .page-header h1 {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+      max-width: 700px;
+      margin-bottom: 1.4rem;
+    }
+    .page-header p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.7;
+      max-width: 560px;
+      font-weight: 300;
+    }
+
+    /* ─── PORTFOLIO GRID ───────────────────────────────── */
+    .portfolio-section {
+      padding: 5rem 4rem 6rem;
+    }
+    .portfolio-category-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(26,26,26,0.35);
+      margin-bottom: 2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #e8e0d8;
+    }
+
+    .portfolio-grid-wrap {
+      width: 100%;
+    }
+
+    /* All grid rows share the same width, gap, and spacing */
+    .grid-feature,
+    .grid-three,
+    .grid-two,
+    .grid-asymmetric,
+    .grid-four {
+      display: grid;
+      width: 100%;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+      box-sizing: border-box;
+      align-items: start;
+    }
+
+    .grid-feature         { grid-template-columns: 1.6fr 1fr; }
+    .grid-feature.reverse { grid-template-columns: 1fr 1.6fr; }
+    .grid-feature .tile-tall { grid-row: span 2; }
+    .grid-three           { grid-template-columns: 1fr 1fr 1fr; }
+    .grid-two             { grid-template-columns: 1fr 1fr; }
+    .grid-asymmetric      { grid-template-columns: 2fr 1fr; }
+    .grid-asymmetric.flip { grid-template-columns: 1fr 2fr; }
+    .grid-four            { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+    /* ─── TILE ─────────────────────────────────────────── */
+    .tile {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .tile .ph {
+      width: 100%;
+      display: block;
+      background: #d6cfc6;
+    }
+    .tile:nth-child(2n) .ph { background: #cdc5bb; }
+    .tile:nth-child(3n) .ph { background: #c8bfb5; }
+    .tile:nth-child(4n) .ph { background: #d4ccc3; }
+    .tile:nth-child(5n) .ph { background: #c2b9af; }
+    .ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ph-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      color: rgba(26,26,26,0.2);
+      letter-spacing: 0.1em;
+      user-select: none;
+      pointer-events: none;
+    }
+    .tile-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 4;
+      background: rgba(255,255,255,0.92);
+      color: #1a1a1a;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+      pointer-events: none;
+    }
+    .tile-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.4rem 1.6rem;
+      background: linear-gradient(to top, rgba(10,20,30,0.72) 0%, transparent 100%);
+      opacity: 1;
+    }
+    .tile-category {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.3rem;
+      line-height: 1.8;
+    }
+    .tile-location {
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+    }
+    .tile-name {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: 1rem;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── TILE REF NUMBER ─────────────────────────────── */
+    .tile-ref { display: none; }
+    .ph-num { display: none; }
+
+    /* ─── SCROLL INDICATOR ────────────────────────────── */
+    .scroll-indicator {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .scroll-indicator span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8a7d6e;
+      writing-mode: vertical-lr;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: #c8bfb5;
+    }
+
+    /* ─── SECTION DIVIDER ──────────────────────────────── */
+    .section-gap { margin-top: 4rem; }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: #1a1a18;
+      color: rgba(255,255,255,0.55);
+      padding: 4rem 4rem 0;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo { display: flex; }
+    .footer-col-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.2rem;
+    }
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-nav a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-nav a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+    }
+    .footer-copy {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.08em;
+    }
+    .footer-legal {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-legal a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+    /* ─── MOBILE ───────────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: #fff;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    #nav.scrolled .nav-hamburger span { background: #1a1a1a; }
+
+    @media (max-width: 900px) {
+      .scroll-indicator { display: none; }
+      #nav { padding: 1.2rem 2rem; }
+      #nav.scrolled { padding: 0.8rem 2rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .page-header { padding: 9rem 2rem 3rem; }
+      .portfolio-section { padding: 3rem 2rem 4rem; }
+      .grid-feature { grid-template-columns: 1fr; }
+      .grid-feature .tile-tall { grid-row: span 1; }
+      .grid-three { grid-template-columns: 1fr 1fr; }
+      .grid-four { grid-template-columns: 1fr 1fr; }
+      .grid-asymmetric { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 3rem 2rem 2rem; }
+    }
+    @media (max-width: 600px) {
+      .grid-two { grid-template-columns: 1fr; }
+      .grid-three { grid-template-columns: 1fr; }
+      .grid-four { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link" style="position:absolute;top:-999px;left:-999px;">Skip to main content</a>
+
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-logo">
+    <a href="website-v5.html" aria-label="InSite Group — Home" style="display:flex;line-height:0;">
+      <img src="images/insite-logo.png" alt="InSite Group" />
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="website-v5.html">About</a></li>
+    <li><a href="website-v5.html#vision">Vision</a></li>
+    <li><a href="website-v5.html#portfolio">Portfolio</a></li>
+    <li><a href="website-v5.html#contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="scroll-indicator">
+  <div class="scroll-line"></div>
+  <span>Scroll</span>
+</div>
+
+<main id="main-content">
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1>Where Vision<br>Becomes Place</h1>
+    <p>From concept to completion, every project is designed to elevate how people live, gather, and experience the world around them.</p>
+    <p style="margin-top:1rem;">The work below represents a selection of current and realized projects spanning hospitality, residential, and mixed-use developments and redevelopments.</p>
+  </header>
+
+  <!-- Portfolio Grid -->
+  <section class="portfolio-section" aria-label="Portfolio">
+
+    <div class="portfolio-grid-wrap">
+
+    <!-- Galleria -->
+    <div class="grid-asymmetric">
+      <div class="tile">
+        <img src="images/Galleria-V01-op1.jpg" alt="Galleria" style="width:100%;height:500px;object-fit:cover;display:block;" />
+        <span class="tile-ref">46</span>
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Mixed-Use · Fort Lauderdale</div>
+          <div class="tile-name">Galleria Mall Master Plan</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/Galleria Mall4.jpg" alt="Galleria" style="width:100%;height:500px;object-fit:cover;display:block;" />
+        <span class="tile-ref">47</span>
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Mixed-Use · Fort Lauderdale</div>
+          <div class="tile-name">Galleria Mall</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:0.8rem;margin-bottom:0.8rem;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
+        <div class="tile">
+          <img src="images/Galleria Mall3.png" alt="Galleria" style="width:100%;height:360px;object-fit:cover;display:block;" />
+          <span class="tile-ref">50</span>
+          <span class="tile-badge">Current</span>
+          <div class="tile-overlay">
+            <div class="tile-category">Mixed-Use · Fort Lauderdale</div>
+            <div class="tile-name">Galleria Mall</div>
+          </div>
+        </div>
+        <div class="tile">
+          <img src="images/Galleria Mall1.png" alt="Galleria" style="width:100%;height:360px;object-fit:cover;display:block;" />
+          <span class="tile-ref">48</span>
+          <span class="tile-badge">Current</span>
+          <div class="tile-overlay">
+            <div class="tile-category">Mixed-Use · Fort Lauderdale</div>
+            <div class="tile-name">Galleria Mall</div>
+          </div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/Galleria Mall2.png" alt="Galleria" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <span class="tile-ref">49</span>
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Mixed-Use · Fort Lauderdale</div>
+          <div class="tile-name">Galleria Mall</div>
+        </div>
+      </div>
+    </div>
+    <!-- B Ocean -->
+    <div class="grid-asymmetric flip" style="margin-bottom:0.8rem;">
+      <div class="tile">
+        <img src="images/B Ocean Exterior1.jpg" alt="B Ocean Exterior" style="width:100%;height:500px;object-fit:cover;display:block;" />
+        <span class="tile-ref">55</span>
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Fort Lauderdale</div>
+          <div class="tile-name">B Ocean Resort</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/B Ocean 4 Bldgs2.jpeg" alt="B Ocean" style="width:100%;height:500px;object-fit:cover;display:block;" />
+        <span class="tile-ref">54</span>
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Fort Lauderdale</div>
+          <div class="tile-name">B Ocean Resort</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-two">
+      <div class="tile">
+        <img src="images/B Ocean Lobby.jpeg" alt="B Ocean Lobby" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <span class="tile-ref">56</span>
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Fort Lauderdale</div>
+          <div class="tile-name">B Ocean Resort</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/unique suite ocean front king living area.jpg" alt="B Ocean suite" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <span class="tile-ref">66</span>
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Fort Lauderdale</div>
+          <div class="tile-name">B Ocean Resort</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 8: Asymmetric narrow + wide -->
+    <div class="grid-asymmetric flip">
+      <div class="tile">
+        <img src="images/LBV Porte Cochere.jpg" alt="Renaissance at Disney Springs" style="width:100%;height:460px;object-fit:cover;display:block;" />
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Disney Springs, Orlando</div>
+          <div class="tile-name">Renaissance</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/LBV Exterior.jpg" alt="Renaissance at Disney Springs" style="width:100%;height:460px;object-fit:cover;display:block;" />
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Disney Springs, Orlando</div>
+          <div class="tile-name">Renaissance</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-two">
+      <div class="tile">
+        <img src="images/LBV Lounge.jpg" alt="Renaissance Lounge" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Disney Springs, Orlando</div>
+          <div class="tile-name">Renaissance</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/LBV Guestroom.jpg" alt="Renaissance Guestroom" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Disney Springs, Orlando</div>
+          <div class="tile-name">Renaissance</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Incoming images — to be organized -->
+    <div class="grid-two">
+      <div class="tile">
+        <img src="images/Banana Bay Exterior2.jpeg" alt="Banana Bay Exterior" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <span class="tile-ref">31</span>
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Mixed-Use · Marathon, Florida Keys</div>
+          <div class="tile-name">Banana Bay Resort &amp; Marina</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/Courtyard Exterior2 Cropped.jpg" alt="Courtyard by Marriott Across Universal" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <span class="tile-badge">Current</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Universal, Orlando</div>
+          <div class="tile-name">Courtyard by Marriott Across Universal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-two">
+      <div class="tile">
+        <img src="images/Sheraton Tampa Exterior3.jpeg" alt="Sheraton Riverwalk exterior" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <span class="tile-ref">26</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Tampa</div>
+          <div class="tile-name">Sheraton Riverwalk</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/Coco Key1.jpeg" alt="Coco Key Resort & Waterpark" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <span class="tile-ref">38</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Orlando</div>
+          <div class="tile-name">Coco Key Resort &amp; Waterpark</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B on Canal — all images together -->
+    <div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:0.8rem;margin-bottom:0.8rem;width:100%;">
+      <div class="tile">
+        <img src="images/B on Canal Exterior.jpeg" alt="B on Canal exterior" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <span class="tile-ref">16</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · New Orleans</div>
+          <div class="tile-name">B on Canal</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/B on Canal.jpeg" alt="B on Canal" style="width:100%;height:360px;object-fit:cover;object-position:center 25%;display:block;" />
+        <span class="tile-ref">28</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · New Orleans</div>
+          <div class="tile-name">B on Canal</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/B on Canal Rest.jpeg" alt="B on Canal Restaurant" style="width:100%;height:360px;object-fit:cover;display:block;" />
+        <span class="tile-ref">36</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · New Orleans</div>
+          <div class="tile-name">B on Canal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-asymmetric flip">
+      <div class="tile">
+        <img src="images/B Historic Sav Exterior.jpeg" alt="B Historic Exterior" style="width:100%;height:500px;object-fit:cover;object-position:center 20%;display:block;" />
+        <span class="tile-ref">32</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Savannah</div>
+          <div class="tile-name">B Historic</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/B Historic Sav.jpeg" alt="B Historic" style="width:100%;height:500px;object-fit:cover;object-position:center 15%;display:block;" />
+        <span class="tile-ref">33</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Savannah</div>
+          <div class="tile-name">B Historic</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-two">
+      <div class="tile">
+        <img src="images/Sagamore Exterior1.jpg" alt="Sagamore Hotel, Miami Beach" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <span class="tile-ref">44</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality | Miami Beach</div>
+          <div class="tile-name">Sagamore</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/Nautilus Exterior1.jpg" alt="Nautilus Exterior, Miami Beach" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <span class="tile-ref">45</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality | Miami Beach</div>
+          <div class="tile-name">Nautilus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-two">
+      <div class="tile">
+        <img src="images/b2.png" alt="b2 Hospitality Downtown Miami" style="width:100%;height:420px;object-fit:cover;object-position:center;display:block;" />
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Downtown Miami</div>
+          <div class="tile-name">b2</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/galleryone-a-doubletree.jpg" alt="Gallery One a DoubleTree by Hilton" style="width:100%;height:420px;object-fit:cover;object-position:center;display:block;" />
+        <span class="tile-ref">43</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Fort Lauderdale</div>
+          <div class="tile-name">Gallery One</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-asymmetric">
+      <div class="tile">
+        <img src="images/B Ocean1.png" alt="B Ocean" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <span class="tile-ref">42</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Fort Lauderdale</div>
+          <div class="tile-name">B Ocean</div>
+        </div>
+      </div>
+      <div class="tile">
+        <img src="images/B Ocean Sunrise Exterior.jpeg" alt="B Ocean Sunrise Exterior" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <span class="tile-ref">52</span>
+        <span class="tile-badge">Realized</span>
+        <div class="tile-overlay">
+          <div class="tile-category">Hospitality · Fort Lauderdale</div>
+          <div class="tile-name">B Ocean</div>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- end portfolio-grid-wrap -->
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="website-v5.html" aria-label="Go to home page" style="display:inline-block;line-height:0;margin-bottom:1.8rem;">
+      <svg width="62" height="62" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="10" cy="10" r="5" fill="#fff"/><circle cx="30" cy="10" r="5" fill="#fff"/><circle cx="50" cy="10" r="5" fill="#fff"/><circle cx="70" cy="10" r="5" fill="#fff"/><circle cx="90" cy="10" r="5" fill="#fff"/>
+        <circle cx="10" cy="30" r="5" fill="#fff"/><circle cx="30" cy="30" r="5" fill="#fff"/><circle cx="50" cy="30" r="5" fill="#b08a4a"/><circle cx="70" cy="30" r="5" fill="#fff"/><circle cx="90" cy="30" r="5" fill="#fff"/>
+        <circle cx="10" cy="50" r="5" fill="#fff"/><circle cx="30" cy="50" r="5" fill="#fff"/><circle cx="50" cy="50" r="5" fill="#b08a4a"/><circle cx="70" cy="50" r="5" fill="#fff"/><circle cx="90" cy="50" r="5" fill="#fff"/>
+        <circle cx="10" cy="70" r="5" fill="#fff"/><circle cx="30" cy="70" r="5" fill="#fff"/><circle cx="50" cy="70" r="5" fill="#b08a4a"/><circle cx="70" cy="70" r="5" fill="#fff"/><circle cx="90" cy="70" r="5" fill="#fff"/>
+        <circle cx="10" cy="90" r="5" fill="#fff"/><circle cx="30" cy="90" r="5" fill="#fff"/><circle cx="50" cy="90" r="5" fill="#fff"/><circle cx="70" cy="90" r="5" fill="#fff"/><circle cx="90" cy="90" r="5" fill="#fff"/>
+      </svg>
+      </a>
+      <div class="footer-col-title">Main Office</div>
+      <p style="font-family:'Poppins',sans-serif;font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.8;font-weight:300;">
+        910 SE 17th Street<br>
+        Fort Lauderdale, FL 33316<br>
+        954.358.6800
+      </p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="website-v5.html">About</a>
+        <a href="website-v5.html#vision">Vision</a>
+        <a href="website-v5.html#portfolio">Portfolio</a>
+        <a href="website-v5.html#contact">Contact</a>
+        <a href="https://www.paycomonline.net/v4/ats/web.php/portal/ED29350392643C6DEF5D9DC75DA5F36E/career-page" target="_blank" rel="noopener">Career Opportunities</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 InSite Group. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="legal.html">Terms &amp; Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Add tile-ref numbers to placeholder tiles that don't already have one
+  document.querySelectorAll('.tile').forEach(tile => {
+    if (!tile.querySelector('.tile-ref')) {
+      const phNum = tile.querySelector('.ph-num');
+      if (phNum) {
+        const ref = document.createElement('span');
+        ref.className = 'tile-ref';
+        ref.textContent = phNum.textContent;
+        tile.appendChild(ref);
+      }
+    }
+  });
+
+  // Reformat tile categories: "Type · Location" → "Type | Location"
+  document.querySelectorAll('.tile-category').forEach(el => {
+    el.textContent = el.textContent.replace(' · ', ' | ');
+  });
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const hamburger = document.querySelector('.nav-hamburger');
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !isOpen);
+    hamburger.classList.toggle('open', !isOpen);
+  });
+</script>
+
+<script>
+  document.querySelectorAll('a[href]').forEach(function(a){
+    var h=a.getAttribute('href');
+    if(!h.startsWith('mailto:')&&!h.startsWith('tel:')&&!h.startsWith('#')){
+      a.dataset.href=h;a.removeAttribute('href');
+      a.style.cursor='pointer';
+      a.setAttribute('tabindex','0');
+      a.addEventListener('click',function(){window.location=this.dataset.href;});
+      a.addEventListener('keypress',function(e){if(e.key==='Enter')window.location=this.dataset.href;});
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InSite Group — Email Signature</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; background: #f4f4f2; padding: 3rem 2rem; }
+    h1 { font-family: 'Times New Roman', serif; font-size: 1.3rem; font-weight: 400; color: #1a1a1a; margin-bottom: 0.3rem; }
+    .page-sub { font-size: 0.8rem; color: #999; margin-bottom: 2.5rem; }
+    .block { background: #fff; border: 1px solid #e0d8cf; margin-bottom: 3rem; }
+    .block-header { background: #f9f7f4; padding: 0.8rem 1.5rem; border-bottom: 1px solid #e0d8cf; display: flex; justify-content: space-between; align-items: center; }
+    .block-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #999; }
+    .copy-btn { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; background: #1a1a1a; color: #fff; border: none; padding: 0.4rem 1rem; cursor: pointer; transition: background 0.2s; }
+    .copy-btn:hover { background: #b08a4a; }
+    .copy-btn.copied { background: #b08a4a; }
+    .sig-area { padding: 2rem; }
+    .instructions { font-size: 0.72rem; color: #aaa; padding: 0.8rem 1.5rem; border-top: 1px solid #f0ece6; line-height: 1.8; }
+    .instructions strong { color: #666; }
+    .step { font-size: 0.72rem; color: #888; background: #f9f7f4; border: 1px solid #e8e0d8; padding: 1rem 1.5rem; margin-bottom: 2rem; line-height: 1.9; }
+    .step strong { color: #1a1a1a; }
+    .dl-btn { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; background: #b08a4a; color: #fff; border: none; padding: 0.5rem 1.2rem; cursor: pointer; margin-top: 1rem; display: inline-block; text-decoration: none; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+
+<h1>INSITE <span style="color:#b08a4a;font-size:0.7em;letter-spacing:2px;">GROUP</span></h1>
+<p class="page-sub">Email Signature Generator</p>
+
+<!-- STEP 1: Download logo image -->
+<div class="step">
+  <strong>Step 1 —</strong> Click "Save Logo Image" below to download the logo as a PNG file. You will use this image in your signature.
+</div>
+
+<div class="block">
+  <div class="block-header">
+    <span class="block-label">Logo Preview</span>
+    <a id="dl-link" class="dl-btn" download="insite-logo.png">Save Logo Image</a>
+  </div>
+  <div style="padding:1.5rem 2rem;">
+    <canvas id="logo-canvas"></canvas>
+  </div>
+</div>
+
+<!-- STEP 2: Copy signature -->
+<div class="step">
+  <strong>Step 2 —</strong> Click "Copy Signature" below, then paste into your email client.<br>
+  <strong>Gmail:</strong> Settings → See all settings → Signature → Create new → paste<br>
+  <strong>Outlook:</strong> File → Options → Mail → Signatures → New → paste<br>
+  <strong>Note:</strong> After pasting, replace the logo placeholder with the PNG file you saved above.
+</div>
+
+<!-- OPTION A -->
+<div class="block">
+  <div class="block-header">
+    <span class="block-label">Option A — Stacked</span>
+    <button class="copy-btn" onclick="copySignature('sig-a', this)">Copy Signature</button>
+  </div>
+  <div class="sig-area">
+    <div id="sig-a">
+      <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;">
+        <tr>
+          <td style="padding-bottom:12px;">
+            <img id="logo-img-a" width="160" alt="InSite Group" style="display:block;" />
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top:1px solid #e0d8cf;padding-top:12px;">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:#1a1a1a;padding-bottom:1px;">First Last</td>
+                <td style="padding:0 7px;color:#ccc;">|</td>
+                <td style="font-family:Arial,sans-serif;font-size:10px;color:#888;letter-spacing:0.1em;text-transform:uppercase;">Title</td>
+              </tr>
+            </table>
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:7px;">
+              <tr><td style="font-family:Arial,sans-serif;font-size:12px;color:#555;padding-bottom:3px;">954.358.6800</td></tr>
+              <tr><td style="font-family:Arial,sans-serif;font-size:12px;color:#555;padding-bottom:3px;">info@insiteus.com</td></tr>
+              <tr><td style="font-family:Arial,sans-serif;font-size:12px;color:#999;">910 SE 17th Street &nbsp;&middot;&nbsp; Fort Lauderdale, FL 33316</td></tr>
+              <tr><td style="font-family:Arial,sans-serif;font-size:11px;color:#b08a4a;letter-spacing:0.05em;padding-top:7px;">insiteus.com</td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- OPTION B -->
+<div class="block">
+  <div class="block-header">
+    <span class="block-label">Option B — Side by Side</span>
+    <button class="copy-btn" onclick="copySignature('sig-b', this)">Copy Signature</button>
+  </div>
+  <div class="sig-area">
+    <div id="sig-b">
+      <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;">
+        <tr>
+          <td style="vertical-align:middle;padding-right:20px;">
+            <img id="logo-img-b" width="160" alt="InSite Group" style="display:block;" />
+          </td>
+          <td style="width:1px;background-color:#b08a4a;">&nbsp;</td>
+          <td style="vertical-align:middle;padding-left:20px;">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:#1a1a1a;padding-bottom:1px;">First Last</td>
+                <td style="padding:0 7px;color:#ccc;">|</td>
+                <td style="font-family:Arial,sans-serif;font-size:10px;color:#888;letter-spacing:0.1em;text-transform:uppercase;">Title</td>
+              </tr>
+              <tr><td colspan="3" style="font-family:Arial,sans-serif;font-size:12px;color:#555;padding-top:6px;padding-bottom:3px;">954.358.6800 &nbsp;&middot;&nbsp; info@insiteus.com</td></tr>
+              <tr><td colspan="3" style="font-family:Arial,sans-serif;font-size:12px;color:#999;padding-bottom:3px;">910 SE 17th Street &nbsp;&middot;&nbsp; Fort Lauderdale, FL 33316</td></tr>
+              <tr><td colspan="3" style="font-family:Arial,sans-serif;font-size:11px;color:#b08a4a;letter-spacing:0.05em;padding-top:5px;">insiteus.com</td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Render logo to canvas — matches website SVG
+  const canvas = document.getElementById('logo-canvas');
+  const scale = 2; // retina
+  const W = 300, H = 48;
+  canvas.width = W * scale;
+  canvas.height = H * scale;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(scale, scale);
+  ctx.clearRect(0, 0, W, H);
+
+  // INSITE — weight 400, generous letter-spacing
+  ctx.font = '400 34px "Times New Roman", Georgia, serif';
+  ctx.letterSpacing = '4px';
+  ctx.fillStyle = '#1a1a1a';
+  ctx.fillText('INSITE', 0, 36);
+
+  // GROUP — weight 500, smaller, gold, raised
+  ctx.font = '500 14px "Times New Roman", Georgia, serif';
+  ctx.letterSpacing = '3px';
+  ctx.fillStyle = '#b08a4a';
+  ctx.fillText('GROUP', 208, 22);
+
+  // Set logo image src from canvas
+  const dataUrl = canvas.toDataURL('image/png');
+  document.getElementById('logo-img-a').src = dataUrl;
+  document.getElementById('logo-img-b').src = dataUrl;
+  document.getElementById('dl-link').href = dataUrl;
+
+  // Copy signature
+  function copySignature(id, btn) {
+    const el = document.getElementById(id);
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    document.execCommand('copy');
+    sel.removeAllRanges();
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy Signature';
+      btn.classList.remove('copied');
+    }, 2000);
+  }
+</script>
+</body>
+</html>
