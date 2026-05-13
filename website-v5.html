@@ -27,11 +27,14 @@
     }
     .section-headline {
       font-family: 'Gilda Display', Georgia, serif;
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-size: clamp(1.8rem, 4vw, 3.6rem);
       font-weight: 400;
       letter-spacing: -0.01em;
-      line-height: 1.2;
+      line-height: 1.15;
       color: #1a1a1a;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .body-copy {
       font-family: 'Poppins', sans-serif;
@@ -229,12 +232,15 @@
     .hero-content .label { color: rgba(255,255,255,0.65); margin-bottom: 1.2rem; }
     .hero-headline {
       font-family: 'Gilda Display', Georgia, serif;
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-size: clamp(2rem, 5vw, 4.2rem);
       font-weight: 400;
       color: #fff;
       letter-spacing: -0.01em;
       line-height: 1.1;
       margin-bottom: 1.4rem;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .hero-sub {
       font-family: 'Poppins', sans-serif;
@@ -495,12 +501,15 @@
     .featured-content .label { color: rgba(255,255,255,0.55); margin-bottom: 1.2rem; }
     .featured-headline {
       font-family: 'Gilda Display', Georgia, serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
       color: #fff;
       font-weight: 400;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.02em;
       line-height: 1.2;
       margin-bottom: 1.4rem;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .featured-copy {
       font-family: 'Poppins', sans-serif;
@@ -559,6 +568,7 @@
       border-bottom: 1px solid #e0d8cf;
     }
     .stat-num {
+      font-family: 'Gilda Display', Georgia, serif;
       font-size: 2.2rem;
       font-weight: 400;
       color: #1a1a1a;
@@ -709,6 +719,7 @@
       transition: color 0.3s;
     }
     .footer-nav a:hover, .footer-careers a:hover { color: #fff; }
+    .career-link:hover { color: #b08a4a !important; }
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -847,60 +858,97 @@
       color: #c9a227 !important;
     }
 
+    /* ─── Global overflow guard ───────────────────────────────── */
+    img, video, svg { max-width: 100%; }
+    section, footer, nav { overflow-x: hidden; }
+
     /* ─── Responsive: Tablet (≤ 900px) ────────────────────────── */
     @media (max-width: 900px) {
       #nav { padding: 1.2rem 2rem; }
       #nav.scrolled { padding: 0.8rem 2rem; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .hero-content { padding: 0 2rem; }
+      .nav-hamburger span { background: rgba(255,255,255,0.9); }
+      #nav.scrolled .nav-hamburger span { background: #1a1a1a; }
+
+      #hero { padding-bottom: 8rem; align-items: flex-end; }
+      .hero-content { padding: 0 2rem; max-width: 100%; }
+
       #brand-strip { padding: 4rem 2rem; }
       #vision { grid-template-columns: 1fr; }
       .vision-image { display: none; }
       .vision-text { padding: 4rem 2rem; }
+      .vision-pillars { grid-template-columns: 1fr 1fr; }
+
       #portfolio { padding: 5rem 2rem; }
       .portfolio-grid { grid-template-columns: 1fr 1fr; }
       .portfolio-tile:first-child { grid-column: span 2; }
-      .featured-content { padding: 4rem 2rem; }
+
+      .featured-content { padding: 4rem 2rem; max-width: 100%; }
+
       #about { grid-template-columns: 1fr; }
       .about-image { display: none; }
-      .about-text { padding: 4rem 2rem; }
+      .about-text { padding: 4rem 2rem; max-width: 100%; }
+
       #contact { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
-      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
-      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
       footer { padding: 3rem 2rem 0; }
-      .lifestyle-bg { grid-template-columns: 1fr; }
-      .lifestyle-bg-tile:not(:first-child) { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
     }
 
     /* ─── Responsive: Mobile (≤ 600px) ────────────────────────── */
     @media (max-width: 600px) {
       #nav { padding: 1rem 1.5rem; }
+      .nav-logo img { height: 26px; }
+
+      #hero { padding-bottom: 5rem; min-height: 100svh; }
       .hero-content { padding: 0 1.5rem; }
-      .hero-sub { font-size: 0.95rem; }
+      .hero-sub { font-size: 0.9rem; line-height: 1.7; }
+      #hero br { display: none; }
+
       #brand-strip { padding: 3rem 1.5rem; }
-      .brand-strip-copy { font-size: 1rem; }
+      .brand-strip-copy { font-size: 0.95rem; }
+
       #vision { padding: 0; }
-      .vision-text { padding: 3.5rem 1.5rem; }
+      .vision-text { padding: 3rem 1.5rem; }
       .vision-pillars { grid-template-columns: 1fr; gap: 1.5rem; }
-      #portfolio { padding: 3.5rem 1.5rem; }
+
+      #portfolio { padding: 3rem 1.5rem; }
       .portfolio-grid { grid-template-columns: 1fr; }
       .portfolio-tile:first-child { grid-column: span 1; }
-      .portfolio-tile .img-placeholder { height: 260px; }
-      .portfolio-filters { gap: 1.2rem; flex-wrap: wrap; }
-      #featured { min-height: 60vh; }
+      .portfolio-tile img { height: 260px !important; }
+
+      #featured { min-height: 55vh; }
       .featured-content { padding: 3rem 1.5rem; }
+      #featured br { display: none; }
+
       #about { padding: 0; }
-      .about-text { padding: 3.5rem 1.5rem; }
-      .about-stats { gap: 1.5rem; flex-wrap: wrap; }
-      #contact { padding: 3.5rem 1.5rem; gap: 2.5rem; }
-      .contact-item { flex-direction: column; gap: 0.4rem; }
-      .contact-type { min-width: unset; }
-      #lifestyle { height: 70vh; }
-      .lifestyle-closing { font-size: 0.9rem; padding: 0 1.5rem; text-align: center; }
+      .about-text { padding: 3rem 1.5rem; }
+      .about-stats { flex-direction: column; gap: 1.5rem; align-items: center; }
+
+      #contact { padding: 3rem 1.5rem; gap: 2rem; }
+      .contact-item { padding: 1.2rem 0; }
+      #contact br { display: none; }
+
+      #lifestyle { height: auto; min-height: 50vh; padding: 4rem 0; }
+      .lifestyle-closing { font-size: 0.88rem; padding: 0 1.5rem; }
+
       footer { padding: 2.5rem 1.5rem 0; }
-      .footer-legal { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; padding: 1.2rem 0; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
       .hero-scroll { display: none; }
+      .scroll-line { display: none; }
+    }
+
+    /* ─── Responsive: Very small (≤ 380px) ────────────────────── */
+    @media (max-width: 380px) {
+      .section-headline { font-size: 1.6rem; }
+      .hero-headline { font-size: 1.75rem; }
+      .about-stats { gap: 1rem; }
+      .stat-num { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -1145,7 +1193,7 @@
     <div class="contact-item">
       <div class="contact-type">Careers</div>
       <div class="contact-detail">
-        <a href="https://www.paycomonline.net/v4/ats/web.php/portal/ED29350392643C6DEF5D9DC75DA5F36E/career-page" target="_blank" rel="noopener" style="color:#1a1a1a;" aria-label="Career Opportunities (opens in new tab)">Career Opportunities<span class="sr-only"> (opens in new tab)</span></a>
+        <a href="https://www.paycomonline.net/v4/ats/web.php/portal/ED29350392643C6DEF5D9DC75DA5F36E/career-page" target="_blank" rel="noopener" class="career-link" style="color:#1a1a1a;" aria-label="Career Opportunities (opens in new tab)">Career Opportunities<span class="sr-only"> (opens in new tab)</span></a>
       </div>
     </div>
   </div>
@@ -1179,7 +1227,7 @@
         <a href="#vision">Vision</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
-        <a href="https://www.paycomonline.net/v4/ats/web.php/portal/ED29350392643C6DEF5D9DC75DA5F36E/career-page" target="_blank" rel="noopener" aria-label="Career Opportunities (opens in new tab)">Career Opportunities<span class="sr-only"> (opens in new tab)</span></a>
+        <a href="https://www.paycomonline.net/v4/ats/web.php/portal/ED29350392643C6DEF5D9DC75DA5F36E/career-page" target="_blank" rel="noopener" class="career-link" aria-label="Career Opportunities (opens in new tab)">Career Opportunities<span class="sr-only"> (opens in new tab)</span></a>
       </nav>
     </div>
   </div>

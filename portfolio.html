@@ -14,6 +14,24 @@
       background: #fff;
       overflow-x: hidden;
     }
+    img, video, svg { max-width: 100%; }
+    section, footer, nav { overflow-x: hidden; }
+
+    /* Skip link */
+    .skip-link { position: absolute; top: -999px; left: -999px; z-index: 9999; }
+    .skip-link:focus {
+      top: 1rem; left: 1rem;
+      background: #1a1a1a; color: #fff;
+      padding: 0.5rem 1rem;
+      font-family: 'Poppins', sans-serif; font-size: 0.8rem;
+      text-decoration: none; border-radius: 2px;
+    }
+
+    /* Focus styles */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #b08a4a;
+      outline-offset: 2px;
+    }
 
     /* ─── NAV ─────────────────────────────────────────── */
     #nav {
@@ -71,10 +89,12 @@
       font-size: clamp(2.2rem, 4vw, 3.6rem);
       font-weight: 400;
       letter-spacing: -0.01em;
-      letter-spacing: 0.03em;
       line-height: 1.1;
       max-width: 700px;
       margin-bottom: 1.4rem;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
     .page-header p {
       font-family: 'Poppins', sans-serif;
@@ -195,6 +215,27 @@
       font-size: 1rem;
       color: #fff;
       letter-spacing: -0.01em;
+      overflow-wrap: break-word;
+    }
+
+    /* Custom grid rows (converted from inline styles) */
+    .grid-custom-galleria {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .grid-inner-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .grid-custom-bocanal {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+      width: 100%;
     }
 
     /* ─── TILE REF NUMBER ─────────────────────────────── */
@@ -267,6 +308,7 @@
       transition: color 0.3s;
     }
     .footer-nav a:hover { color: #fff; }
+    .career-link:hover { color: #b08a4a !important; }
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -325,14 +367,28 @@
       .grid-feature .tile-tall { grid-row: span 1; }
       .grid-three { grid-template-columns: 1fr 1fr; }
       .grid-four { grid-template-columns: 1fr 1fr; }
-      .grid-asymmetric { grid-template-columns: 1fr; }
+      .grid-asymmetric,
+      .grid-asymmetric.flip { grid-template-columns: 1fr; }
+      .grid-custom-galleria { grid-template-columns: 1fr; }
+      .grid-custom-bocanal { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr; gap: 3rem; }
       footer { padding: 3rem 2rem 2rem; }
+      .tile img { height: 340px !important; }
     }
     @media (max-width: 600px) {
+      .nav-logo img { height: 26px; }
+      .page-header h1 br { display: none; }
       .grid-two { grid-template-columns: 1fr; }
       .grid-three { grid-template-columns: 1fr; }
       .grid-four { grid-template-columns: 1fr; }
+      .grid-custom-galleria { grid-template-columns: 1fr; }
+      .grid-inner-two { grid-template-columns: 1fr; }
+      .grid-custom-bocanal { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .tile img { height: 260px !important; }
+    }
+    @media (max-width: 380px) {
+      .page-header h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -397,8 +453,8 @@
         </div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:0.8rem;margin-bottom:0.8rem;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
+    <div class="grid-custom-galleria">
+      <div class="grid-inner-two">
         <div class="tile">
           <img src="images/Galleria Mall3.png" alt="Galleria" style="width:100%;height:360px;object-fit:cover;display:block;" />
           <span class="tile-ref">50</span>
@@ -551,7 +607,7 @@
     </div>
 
     <!-- B on Canal — all images together -->
-    <div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:0.8rem;margin-bottom:0.8rem;width:100%;">
+    <div class="grid-custom-bocanal">
       <div class="tile">
         <img src="images/B on Canal Exterior.jpeg" alt="B on Canal exterior" style="width:100%;height:360px;object-fit:cover;display:block;" />
         <span class="tile-ref">16</span>
@@ -694,7 +750,7 @@
         <a href="website-v5.html#vision">Vision</a>
         <a href="website-v5.html#portfolio">Portfolio</a>
         <a href="website-v5.html#contact">Contact</a>
-        <a href="https://www.paycomonline.net/v4/ats/web.php/portal/ED29350392643C6DEF5D9DC75DA5F36E/career-page" target="_blank" rel="noopener">Career Opportunities</a>
+        <a href="https://www.paycomonline.net/v4/ats/web.php/portal/ED29350392643C6DEF5D9DC75DA5F36E/career-page" target="_blank" rel="noopener" class="career-link">Career Opportunities</a>
       </nav>
     </div>
   </div>
