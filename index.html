@@ -193,8 +193,8 @@
       height: 100vh;
       position: relative;
       display: flex;
-      align-items: flex-end;
-      padding-bottom: 14rem;
+      align-items: flex-start;
+      padding-top: 10.5rem;
     }
     .hero-bg {
       position: absolute;
@@ -211,17 +211,13 @@
       height: auto;
       transform: translate(-50%, -50%);
       object-fit: cover;
+      filter: brightness(1.25) saturate(1.05);
     }
     .hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(10,20,30,0.72) 0%,
-        rgba(10,20,30,0.25) 50%,
-        rgba(10,20,30,0.15) 100%
-      );
+      background: transparent;
     }
     .hero-content {
       position: relative;
@@ -229,12 +225,12 @@
       padding: 0 4rem;
       max-width: 900px;
     }
-    .hero-content .label { color: rgba(255,255,255,0.65); margin-bottom: 1.2rem; }
+    .hero-content .label { color: rgba(26,26,26,0.6); margin-bottom: 1.2rem; }
     .hero-headline {
       font-family: 'Gilda Display', Georgia, serif;
       font-size: clamp(2rem, 5vw, 4.2rem);
       font-weight: 400;
-      color: #fff;
+      color: #ffffff;
       letter-spacing: -0.01em;
       line-height: 1.1;
       margin-bottom: 1.4rem;
@@ -245,7 +241,7 @@
     .hero-sub {
       font-family: 'Poppins', sans-serif;
       font-size: 1.22rem;
-      color: rgba(255,255,255,0.78);
+      color: #1a1a1a;
       font-weight: 400;
       font-style: normal;
       line-height: 1.8;
@@ -410,7 +406,7 @@
     .portfolio-tile {
       position: relative;
       overflow: hidden;
-      cursor: pointer;
+      cursor: default;
     }
     .tile-ref {
       position: absolute;
@@ -454,9 +450,10 @@
       margin-bottom: 0.3rem;
     }
     .tile-name {
-      font-size: 1.1rem;
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: 1rem;
       font-weight: 400;
-      letter-spacing: 0.05em;
+      letter-spacing: -0.01em;
     }
     .portfolio-cta {
       text-align: center;
@@ -476,6 +473,7 @@
       position: absolute;
       inset: 0;
     }
+    .featured-bg img { filter: contrast(1.18) saturate(1.12); }
     .featured-bg .img-placeholder {
       width: 100%;
       height: 100%;
@@ -488,8 +486,8 @@
       background: linear-gradient(
         to right,
         rgba(10,18,26,0.78) 0%,
-        rgba(10,18,26,0.2) 60%,
-        transparent 100%
+        rgba(10,18,26,0.15) 50%,
+        rgba(255,220,120,0.22) 100%
       );
     }
     .featured-content {
@@ -962,12 +960,13 @@
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-logo">
     <a href="#hero" aria-label="InSite Group — Home" style="display:flex;line-height:0;">
-      <img src="images/insite-logo-light.png" alt="InSite Group" class="logo-light" />
-      <img src="images/insite-logo.png" alt="InSite Group" class="logo-dark" />
+      
+      <img src="images/insite-logo-white.svg" alt="InSite Group" class="logo-light" />
+      <img src="images/insite-logo.svg" alt="InSite Group" class="logo-dark" />
     </a>
   </div>
   <ul class="nav-links">
-    <li><a href="#">About</a></li>
+    <li><a href="#brand-strip">About</a></li>
     <li><a href="#vision">Vision</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -979,7 +978,7 @@
 
 <!-- Mobile Nav Overlay -->
 <div class="mobile-nav" role="dialog" aria-label="Mobile navigation" aria-modal="true">
-  <a href="#">About</a>
+  <a href="#brand-strip">About</a>
   <a href="#vision">Vision</a>
   <a href="#portfolio">Portfolio</a>
   <a href="#contact">Contact</a>
@@ -1001,7 +1000,7 @@
   </div>
   <div class="hero-content">
     <h1 class="hero-headline">Shaping Florida’s<br>Most Distinctive Places</h1>
-    <p class="hero-sub">Inspiring residential, hospitality, and mixed-use developments defined by vision, responsibility, and precise execution.</p>
+    <p class="hero-sub">Crafted residential, hospitality, and mixed-use developments defined by vision, responsibility, and precise execution.</p>
   </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
@@ -1074,7 +1073,7 @@
       <img src="images/Ren LBV Exterior.jpg" alt="Ren LBV Exterior" style="width:100%;height:420px;object-fit:cover;display:block;" />
       <div class="tile-overlay">
         <div class="tile-category">Hospitality | Disney Springs, Orlando</div>
-        <div class="tile-name">Renaissance</div>
+        <div class="tile-name">Renaissance Resort &amp; Spa</div>
       </div>
     </div>
     <div class="portfolio-tile">
@@ -1115,7 +1114,7 @@
     <img src="images/Galleria-V01-op1.jpg" alt="Galleria Fort Lauderdale" style="width:100%;height:100%;object-fit:cover;display:block;" />
   </div>
   <div class="featured-content">
-    <h2 class="featured-headline">Redefining Coastal<br>Luxury Living</h2>
+    <h2 class="featured-headline">Redefining Effortless Coastal Living</h2>
     <p class="featured-copy">Each project integrates residential, hospitality, and lifestyle elements into cohesive environments that elevate both private living and shared experience.</p>
   </div>
 </section>
@@ -1223,7 +1222,7 @@
     <div>
       <div class="footer-col-title">Navigation</div>
       <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#">About</a>
+        <a href="#brand-strip">About</a>
         <a href="#vision">Vision</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>

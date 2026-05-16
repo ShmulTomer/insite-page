@@ -53,6 +53,10 @@
     }
     .nav-logo { display: flex; align-items: center; }
     .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-logo .logo-dark { display: none; }
+    .nav-logo .logo-light { display: block; }
+    #nav.scrolled .nav-logo .logo-dark { display: block; }
+    #nav.scrolled .nav-logo .logo-light { display: none; }
     .nav-links {
       display: flex;
       gap: 2.8rem;
@@ -151,7 +155,7 @@
     .tile {
       position: relative;
       overflow: hidden;
-      cursor: pointer;
+      cursor: default;
     }
     .tile .ph {
       width: 100%;
@@ -399,11 +403,12 @@
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-logo">
     <a href="index.html" aria-label="InSite Group — Home" style="display:flex;line-height:0;">
-      <img src="images/insite-logo.png" alt="InSite Group" />
+      <img src="images/insite-logo.svg" alt="InSite Group" />
+      
     </a>
   </div>
   <ul class="nav-links">
-    <li><a href="index.html">About</a></li>
+    <li><a href="index.html#brand-strip">About</a></li>
     <li><a href="index.html#vision">Vision</a></li>
     <li><a href="index.html#portfolio">Portfolio</a></li>
     <li><a href="index.html#contact">Contact</a></li>
@@ -533,7 +538,7 @@
         <span class="tile-badge">Current</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality · Disney Springs, Orlando</div>
-          <div class="tile-name">Renaissance</div>
+          <div class="tile-name">Renaissance Resort &amp; Spa</div>
         </div>
       </div>
       <div class="tile">
@@ -541,7 +546,7 @@
         <span class="tile-badge">Current</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality · Disney Springs, Orlando</div>
-          <div class="tile-name">Renaissance</div>
+          <div class="tile-name">Renaissance Resort &amp; Spa</div>
         </div>
       </div>
     </div>
@@ -551,7 +556,7 @@
         <span class="tile-badge">Current</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality · Disney Springs, Orlando</div>
-          <div class="tile-name">Renaissance</div>
+          <div class="tile-name">Renaissance Resort &amp; Spa</div>
         </div>
       </div>
       <div class="tile">
@@ -559,7 +564,7 @@
         <span class="tile-badge">Current</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality · Disney Springs, Orlando</div>
-          <div class="tile-name">Renaissance</div>
+          <div class="tile-name">Renaissance Resort &amp; Spa</div>
         </div>
       </div>
     </div>
@@ -644,7 +649,7 @@
         <span class="tile-badge">Realized</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality · Savannah</div>
-          <div class="tile-name">B Historic</div>
+          <div class="tile-name">B Historic Savannah</div>
         </div>
       </div>
       <div class="tile">
@@ -653,19 +658,19 @@
         <span class="tile-badge">Realized</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality · Savannah</div>
-          <div class="tile-name">B Historic</div>
+          <div class="tile-name">B Historic Savannah</div>
         </div>
       </div>
     </div>
 
     <div class="grid-two">
       <div class="tile">
-        <img src="images/Sagamore Exterior1.jpg" alt="Sagamore Hotel, Miami Beach" style="width:100%;height:420px;object-fit:cover;display:block;" />
+        <img src="images/Sagamore.png" alt="Sagamore Hotel, Miami Beach" style="width:100%;height:420px;object-fit:cover;display:block;" />
         <span class="tile-ref">44</span>
         <span class="tile-badge">Realized</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality | Miami Beach</div>
-          <div class="tile-name">Sagamore</div>
+          <div class="tile-name">Sagamore South Beach</div>
         </div>
       </div>
       <div class="tile">
@@ -674,22 +679,22 @@
         <span class="tile-badge">Realized</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality | Miami Beach</div>
-          <div class="tile-name">Nautilus</div>
+          <div class="tile-name">Nautilus South Beach</div>
         </div>
       </div>
     </div>
 
     <div class="grid-two">
       <div class="tile">
-        <img src="images/b2.png" alt="b2 Hospitality Downtown Miami" style="width:100%;height:420px;object-fit:cover;object-position:center;display:block;" />
+        <img src="images/b2 Exterior.png" alt="b2 Hospitality Downtown Miami" style="width:100%;height:420px;object-fit:cover;object-position:center;display:block;" />
         <span class="tile-badge">Realized</span>
         <div class="tile-overlay">
           <div class="tile-category">Hospitality · Downtown Miami</div>
-          <div class="tile-name">b2</div>
+          <div class="tile-name">b2 Downtown</div>
         </div>
       </div>
       <div class="tile">
-        <img src="images/galleryone-a-doubletree.jpg" alt="Gallery One a DoubleTree by Hilton" style="width:100%;height:420px;object-fit:cover;object-position:center;display:block;" />
+        <img src="images/Gallery One Exterior.png" alt="Gallery One a DoubleTree by Hilton" style="width:100%;height:420px;object-fit:cover;object-position:center;display:block;" />
         <span class="tile-ref">43</span>
         <span class="tile-badge">Realized</span>
         <div class="tile-overlay">
@@ -746,7 +751,7 @@
     <div>
       <div class="footer-col-title">Navigation</div>
       <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html">About</a>
+        <a href="index.html#brand-strip">About</a>
         <a href="index.html#vision">Vision</a>
         <a href="index.html#portfolio">Portfolio</a>
         <a href="index.html#contact">Contact</a>
