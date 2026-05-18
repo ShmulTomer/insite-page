@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership Team — InSite Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; color: #1a1a1a; background: #fff; overflow-x: hidden; }
+
+    /* ─── Skip Link ─────────────────────────────────────────────── */
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: #b08a4a; color: #fff; padding: 0.5rem 1rem;
+      font-size: 0.8rem; z-index: 9999; text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ─── Focus ─────────────────────────────────────────────────── */
+    :focus-visible { outline: 2px solid #b08a4a; outline-offset: 3px; }
+
+    /* ─── Nav ───────────────────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.2rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 20px rgba(0,0,0,0.07);
+      transition: padding 0.4s, box-shadow 0.4s;
+    }
+    #nav.scrolled { padding: 0.7rem 4rem; box-shadow: 0 2px 30px rgba(0,0,0,0.1); }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Poppins', sans-serif; font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #1a1a1a; text-decoration: none; transition: opacity 0.3s;
+    }
+    .nav-links a:hover { opacity: 0.6; }
+
+    /* ─── Page Header ───────────────────────────────────────────── */
+    .page-header {
+      padding: 10rem 4rem 4rem;
+      text-align: center;
+      border-bottom: 1px solid #e8e0d8;
+    }
+    .page-header-label {
+      font-family: 'Poppins', sans-serif; font-size: 0.65rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #b08a4a; margin-bottom: 1rem;
+    }
+    .page-header h1 {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400;
+      letter-spacing: 0.03em; line-height: 1.2;
+      color: #1a1a1a;
+    }
+
+    /* ─── Leadership Section ────────────────────────────────────── */
+    #leadership {
+      padding: 6rem 4rem 7rem;
+      background: #fff;
+    }
+
+    /* CEO featured row */
+    .leadership-ceo {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 4.5rem;
+      align-items: start;
+      max-width: 1000px;
+      margin: 0 auto 5.5rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px solid #e0d8cf;
+    }
+    .leadership-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+    }
+    .leadership-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .leadership-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #e8e0d8 0%, #d4c9bc 100%);
+    }
+    .leadership-photo-placeholder span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #a09080;
+    }
+    .leadership-ceo-name {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: 2rem; font-weight: 400; letter-spacing: 0.02em;
+      color: #1a1a1a; margin-bottom: 0.35rem;
+    }
+    .leadership-ceo-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #b08a4a; margin-bottom: 2rem;
+    }
+    .leadership-ceo-bio {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.92rem; line-height: 1.9; color: #555; font-weight: 300;
+    }
+    .leadership-ceo-bio p + p { margin-top: 1rem; }
+
+    /* Executive grid */
+    .leadership-grid-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .leadership-grid-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: #b08a4a; margin-bottom: 0.6rem;
+    }
+    .leadership-grid-title {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 400;
+      color: #1a1a1a; letter-spacing: 0.03em;
+    }
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .exec-card {}
+    .exec-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      margin-bottom: 1.1rem;
+    }
+    .exec-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .exec-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #e8e0d8 0%, #d4c9bc 100%);
+    }
+    .exec-photo-placeholder span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #a09080;
+    }
+    .exec-name {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: 1.05rem; font-weight: 400; color: #1a1a1a;
+      letter-spacing: 0.01em; margin-bottom: 0.3rem;
+    }
+    .exec-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: #8a7d6e;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    footer { background: #111; padding: 3rem 4rem 2rem; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy {
+      font-family: 'Poppins', sans-serif; font-size: 0.75rem;
+      color: rgba(255,255,255,0.35); letter-spacing: 0.08em;
+    }
+    .footer-legal { display: flex; gap: 2rem; }
+    .footer-legal a {
+      font-family: 'Poppins', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s;
+      min-height: 44px; display: inline-flex; align-items: center;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.95); }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 8rem 2rem 3rem; }
+      #leadership { padding: 4rem 2rem 5rem; }
+      .leadership-ceo { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 4rem; padding-bottom: 4rem; }
+      .leadership-photo { max-width: 280px; }
+      .leadership-grid { grid-template-columns: repeat(3, 1fr); gap: 2.5rem 1.5rem; }
+      footer { padding: 2rem; }
+    }
+    @media (max-width: 600px) {
+      #nav { padding: 1rem 1.5rem; }
+      .page-header { padding: 7rem 1.5rem 2.5rem; }
+      #leadership { padding: 3rem 1.5rem 4rem; }
+      .leadership-ceo { gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 3rem; }
+      .leadership-photo { max-width: 100%; }
+      .leadership-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.2rem; }
+    }
+    @media (max-width: 380px) {
+      .leadership-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-logo">
+    <a href="index.html" aria-label="InSite Group — Home" style="display:flex;line-height:0;">
+      <img src="images/insite-logo.svg" alt="InSite Group" />
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#brand-strip">About</a></li>
+    <li><a href="index.html#vision">Vision</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+  <header class="page-header">
+    <div class="page-header-label">Our People</div>
+    <h1>The Leadership Team</h1>
+  </header>
+
+  <section id="leadership" aria-label="Leadership Team">
+
+    <!-- CEO Featured -->
+    <div class="leadership-ceo">
+      <div class="leadership-photo" aria-hidden="true">
+        <div class="leadership-photo-placeholder"><span>Photo</span></div>
+      </div>
+      <div class="leadership-ceo-text">
+        <div class="leadership-ceo-name">Ben Shmul</div>
+        <div class="leadership-ceo-title">Chief Executive Officer</div>
+        <div class="leadership-ceo-bio">
+          <p>Ben Shmul sets the firm's strategic vision and oversees various aspects of the business across a diversified portfolio of residential, hospitality, and mixed-use assets. Under his leadership, InSite has built a reputation for executing complex, high-impact projects and transformative real estate developments, particularly along Florida's premier coastal markets.</p>
+          <p>Ben has played a pivotal role in scaling InSite's vertically integrated platform, which provides full lifecycle control from sourcing and underwriting through execution and operations — enabling the firm to enhance returns, mitigate risk, and maintain consistent quality across its portfolio.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Executive Grid -->
+    <div class="leadership-grid-header">
+      <div class="leadership-grid-label">Executive Team</div>
+      <div class="leadership-grid-title">Senior Leadership</div>
+    </div>
+    <div class="leadership-grid" role="list">
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">Ayelet Weinstein</div>
+        <div class="exec-title">EVP</div>
+      </div>
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">Ronald Tencer</div>
+        <div class="exec-title">COO</div>
+      </div>
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">John Wijtenburg</div>
+        <div class="exec-title">Senior Director of Development and Asset Management</div>
+      </div>
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">Robert Wilkins</div>
+        <div class="exec-title">Senior Director of Development and Procurement</div>
+      </div>
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">Engin Cosmai</div>
+        <div class="exec-title">Director of Operational Excellence</div>
+      </div>
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">Ivan Gomez</div>
+        <div class="exec-title">Controller</div>
+      </div>
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">Elizabeth Ladd</div>
+        <div class="exec-title">Director of Accounting</div>
+      </div>
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">Mina Doblmeier</div>
+        <div class="exec-title">Director of Administration</div>
+      </div>
+
+      <div class="exec-card" role="listitem">
+        <div class="exec-photo" aria-hidden="true"><div class="exec-photo-placeholder"><span>Photo</span></div></div>
+        <div class="exec-name">[ Name ]</div>
+        <div class="exec-title">[ Title ]</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div style="display:flex;justify-content:flex-end;padding-bottom:1.5rem;">
+    <a href="index.html" aria-label="Go to home page" style="display:inline-block;line-height:0;">
+      <svg width="62" height="62" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="10" cy="10" r="5" fill="#fff"/><circle cx="30" cy="10" r="5" fill="#fff"/><circle cx="50" cy="10" r="5" fill="#fff"/><circle cx="70" cy="10" r="5" fill="#fff"/><circle cx="90" cy="10" r="5" fill="#fff"/>
+        <circle cx="10" cy="30" r="5" fill="#fff"/><circle cx="30" cy="30" r="5" fill="#fff"/><circle cx="50" cy="30" r="5" fill="#b08a4a"/><circle cx="70" cy="30" r="5" fill="#fff"/><circle cx="90" cy="30" r="5" fill="#fff"/>
+        <circle cx="10" cy="50" r="5" fill="#fff"/><circle cx="30" cy="50" r="5" fill="#fff"/><circle cx="50" cy="50" r="5" fill="#b08a4a"/><circle cx="70" cy="50" r="5" fill="#fff"/><circle cx="90" cy="50" r="5" fill="#fff"/>
+        <circle cx="10" cy="70" r="5" fill="#fff"/><circle cx="30" cy="70" r="5" fill="#fff"/><circle cx="50" cy="70" r="5" fill="#b08a4a"/><circle cx="70" cy="70" r="5" fill="#fff"/><circle cx="90" cy="70" r="5" fill="#fff"/>
+        <circle cx="10" cy="90" r="5" fill="#fff"/><circle cx="30" cy="90" r="5" fill="#fff"/><circle cx="50" cy="90" r="5" fill="#fff"/><circle cx="70" cy="90" r="5" fill="#fff"/><circle cx="90" cy="90" r="5" fill="#fff"/>
+      </svg>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 InSite Group. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="legal.html">Terms &amp; Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Nav scroll state */
+  window.addEventListener('scroll', function() {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* Disable href on non-mailto/tel/hash links (consistent with other pages) */
+  document.querySelectorAll('a[href]').forEach(function(a) {
+    var h = a.getAttribute('href');
+    if (!h.startsWith('mailto:') && !h.startsWith('tel:') && !h.startsWith('#') && !h.startsWith('javascript')) {
+      a.dataset.href = h; a.removeAttribute('href');
+      a.style.cursor = 'pointer';
+      a.setAttribute('tabindex', '0');
+      a.addEventListener('click', function() { window.location = this.dataset.href; });
+      a.addEventListener('keypress', function(e) { if (e.key === 'Enter') window.location = this.dataset.href; });
+    }
+  });
+</script>
+
+</body>
+</html>
