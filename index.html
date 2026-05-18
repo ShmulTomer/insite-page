@@ -386,7 +386,8 @@
       text-transform: uppercase;
       color: #737373;
       cursor: pointer;
-      padding-bottom: 0.6rem;
+      padding: 0.75rem 0.5rem;
+      min-height: 44px;
       border-bottom: 2px solid transparent;
       transition: color 0.3s, border-color 0.3s;
       background: none;
@@ -615,7 +616,7 @@
       text-align: center;
     }
     .lifestyle-closing {
-      font-size: clamp(0.95rem, 1.5vw, 1.3rem);
+      font-size: clamp(1.1rem, 1.8vw, 1.6rem);
       color: rgba(255,255,255,0.85);
       letter-spacing: 0.06em;
       font-style: italic;
@@ -726,7 +727,7 @@
     }
     .footer-copy {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       letter-spacing: 0.1em;
       color: rgba(255,255,255,0.55);
     }
@@ -736,13 +737,16 @@
     }
     .footer-legal a {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.75);
       transition: color 0.3s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
-    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+    .footer-legal a:hover { color: rgba(255,255,255,0.95); }
 
     /* ─── Divider ──────────────────────────────────────────────── */
     .section-divider {
@@ -804,7 +808,11 @@
       cursor: pointer;
       background: none;
       border: none;
-      padding: 0.5rem;
+      padding: 0.75rem;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
       z-index: 1002;
     }
     .nav-hamburger span {
@@ -1058,7 +1066,7 @@
       <h2 class="section-headline">A Portfolio Shaped by<br>Lifestyle and Wellbeing</h2>
     </div>
   </div>
-  <p class="portfolio-sub">InSite current projects and developments span Florida's most dynamic markets, from Florida Keys and Orlando to the renowned South Florida beaches — each designed as a response to its unique context and lifestyle demand.</p>
+  <p class="portfolio-sub">InSite's projects and developments span Florida's most dynamic markets, from Florida Keys and Orlando to the renowned South Florida beaches — each designed as a response to its unique context and lifestyle demand.</p>
   <div class="portfolio-grid">
     <div class="portfolio-tile">
       <span class="tile-ref">01</span>
@@ -1114,7 +1122,7 @@
     <img src="images/Galleria-V01-op1.jpg" alt="Galleria Fort Lauderdale" style="width:100%;height:100%;object-fit:cover;display:block;" />
   </div>
   <div class="featured-content">
-    <h2 class="featured-headline">Redefining Effortless Coastal Living</h2>
+    <h2 class="featured-headline">Redefining Coastal Living</h2>
     <p class="featured-copy">Each project integrates residential, hospitality, and lifestyle elements into cohesive environments that elevate both private living and shared experience.</p>
   </div>
 </section>
@@ -1124,7 +1132,7 @@
 ════════════════════════════════════════════ -->
 <section id="about">
   <div class="about-text">
-    <h2 class="section-headline">Built on Experience<br>Measured by Results</h2>
+    <h2 class="section-headline">Built on Experience,<br>Measured by Results</h2>
     <p class="body-copy">InSite is a Florida-based development firm focused on residential, hospitality, and mixed-use projects. Our work reflects a commitment to design excellence, disciplined execution, and long-term value creation.</p>
     <div class="about-stats">
       <div style="flex:1;text-align:center;">
