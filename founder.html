@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ben Shmul — Founder &amp; CEO | InSite Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; color: #1a1a1a; background: #fff; overflow-x: hidden; }
+
+    /* ─── Skip Link ──────────────────────────────────────────────── */
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: #b08a4a; color: #fff; padding: 0.5rem 1rem;
+      font-size: 0.8rem; z-index: 9999; text-decoration: none; transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+    :focus-visible { outline: 2px solid #b08a4a; outline-offset: 3px; }
+
+    /* ─── Nav ────────────────────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.2rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 20px rgba(0,0,0,0.07);
+      transition: padding 0.4s;
+    }
+    #nav.scrolled { padding: 0.7rem 4rem; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Poppins', sans-serif; font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #1a1a1a; text-decoration: none; transition: opacity 0.3s;
+    }
+    .nav-links a:hover { opacity: 0.6; }
+
+    /* ─── Page Header ────────────────────────────────────────────── */
+    .page-header {
+      padding: 10rem 4rem 5rem;
+      background: #f7f4f0;
+      border-bottom: 1px solid #e8e0d8;
+    }
+    .page-header-label {
+      font-family: 'Poppins', sans-serif; font-size: 0.65rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #b08a4a; margin-bottom: 1.2rem;
+    }
+    .page-header h1 {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400;
+      letter-spacing: 0.02em; line-height: 1.15; color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+    .page-header-title {
+      font-family: 'Poppins', sans-serif; font-size: 0.72rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #b08a4a;
+    }
+
+    /* ─── Quote Section ──────────────────────────────────────────── */
+    .quote-section {
+      padding: 6rem 4rem;
+      background: #1a1a18;
+      text-align: center;
+    }
+    .quote-rule {
+      width: 40px; height: 2px; background: #b08a4a;
+      margin: 0 auto 2.5rem;
+    }
+    blockquote {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+      max-width: 860px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+    .quote-attribution {
+      font-family: 'Poppins', sans-serif; font-size: 0.68rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #b08a4a;
+      margin-top: 2rem;
+    }
+
+    /* ─── Bio Section ────────────────────────────────────────────── */
+    .bio-section {
+      padding: 6rem 4rem 7rem;
+      max-width: 860px;
+    }
+    .bio-section-label {
+      font-family: 'Poppins', sans-serif; font-size: 0.65rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #b08a4a; margin-bottom: 2.5rem;
+      padding-bottom: 1rem; border-bottom: 1px solid #e8e0d8;
+    }
+    .bio-section p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem; line-height: 1.9; color: #444; font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+    .bio-section p:last-child { margin-bottom: 0; }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    footer { background: #1a1a18; padding: 3rem 4rem 2rem; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy {
+      font-family: 'Poppins', sans-serif; font-size: 0.72rem;
+      color: rgba(255,255,255,0.25); letter-spacing: 0.08em;
+    }
+    .footer-legal { display: flex; gap: 2rem; }
+    .footer-legal a {
+      font-family: 'Poppins', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none;
+      transition: color 0.3s; min-height: 44px; display: inline-flex; align-items: center;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.95); }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 8rem 2rem 4rem; }
+      .quote-section { padding: 5rem 2rem; }
+      .bio-section { padding: 4rem 2rem 5rem; }
+      footer { padding: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .page-header { padding: 7rem 1.5rem 3rem; }
+      .quote-section { padding: 4rem 1.5rem; }
+      blockquote { font-size: 1.15rem; }
+      .bio-section { padding: 3.5rem 1.5rem 4rem; }
+      .footer-bottom { flex-direction: column; gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-logo">
+    <a href="index.html" aria-label="InSite Group — Home" style="display:flex;line-height:0;">
+      <img src="images/insite-logo.svg" alt="InSite Group" />
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#brand-strip">About</a></li>
+    <li><a href="index.html#vision">Vision</a></li>
+    <li><a href="index.html#vertical-integration">Capabilities</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="page-header-label">Founder &amp; CEO</div>
+    <h1>Ben Shmul</h1>
+    <div class="page-header-title">President &amp; Chief Executive Officer</div>
+  </header>
+
+  <!-- Quote -->
+  <section class="quote-section" aria-label="Quote">
+    <div class="quote-rule"></div>
+    <blockquote>
+      "InSite was built on the belief that great development is about more than buildings — it is about creating places that define how people live, work, and gather for generations."
+    </blockquote>
+    <div class="quote-attribution">— Ben Shmul</div>
+  </section>
+
+  <!-- Bio -->
+  <section class="bio-section" aria-label="Biography">
+    <div class="bio-section-label">Biography</div>
+    <p>Ben Shmul, President &amp; CEO, sets the firm's strategic vision and oversees various aspects of the business across a diversified portfolio of residential, hospitality, and mixed-use assets. Under his leadership, InSite has built a reputation for executing complex, high-impact projects and transformative real estate developments, particularly along Florida's premier coastal markets.</p>
+    <p>Ben has played a pivotal role in scaling InSite's vertically integrated platform, which provides full lifecycle control from sourcing and underwriting through execution and operations — enabling the firm to enhance returns, mitigate risk, and maintain consistent quality across its portfolio.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div style="display:flex;justify-content:flex-end;padding-bottom:1.5rem;">
+    <a href="index.html" aria-label="Go to home page" style="display:inline-block;line-height:0;">
+      <svg width="62" height="62" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="10" cy="10" r="5" fill="#fff"/><circle cx="30" cy="10" r="5" fill="#fff"/><circle cx="50" cy="10" r="5" fill="#fff"/><circle cx="70" cy="10" r="5" fill="#fff"/><circle cx="90" cy="10" r="5" fill="#fff"/>
+        <circle cx="10" cy="30" r="5" fill="#fff"/><circle cx="30" cy="30" r="5" fill="#fff"/><circle cx="50" cy="30" r="5" fill="#b08a4a"/><circle cx="70" cy="30" r="5" fill="#fff"/><circle cx="90" cy="30" r="5" fill="#fff"/>
+        <circle cx="10" cy="50" r="5" fill="#fff"/><circle cx="30" cy="50" r="5" fill="#fff"/><circle cx="50" cy="50" r="5" fill="#b08a4a"/><circle cx="70" cy="50" r="5" fill="#fff"/><circle cx="90" cy="50" r="5" fill="#fff"/>
+        <circle cx="10" cy="70" r="5" fill="#fff"/><circle cx="30" cy="70" r="5" fill="#fff"/><circle cx="50" cy="70" r="5" fill="#b08a4a"/><circle cx="70" cy="70" r="5" fill="#fff"/><circle cx="90" cy="70" r="5" fill="#fff"/>
+        <circle cx="10" cy="90" r="5" fill="#fff"/><circle cx="30" cy="90" r="5" fill="#fff"/><circle cx="50" cy="90" r="5" fill="#fff"/><circle cx="70" cy="90" r="5" fill="#fff"/><circle cx="90" cy="90" r="5" fill="#fff"/>
+      </svg>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 InSite Group. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="legal.html">Terms &amp; Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', function() {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  document.querySelectorAll('a[href]').forEach(function(a) {
+    var h = a.getAttribute('href');
+    if (!h.startsWith('mailto:') && !h.startsWith('tel:') && !h.startsWith('#')) {
+      a.dataset.href = h; a.removeAttribute('href');
+      a.style.cursor = 'pointer';
+      a.setAttribute('tabindex', '0');
+      a.addEventListener('click', function() { window.location = this.dataset.href; });
+      a.addEventListener('keypress', function(e) { if (e.key === 'Enter') window.location = this.dataset.href; });
+    }
+  });
+</script>
+
+</body>
+</html>
