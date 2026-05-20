@@ -1491,13 +1491,15 @@
     var vh = window.innerHeight;
     var nav = document.getElementById('nav');
     var navH = nav ? nav.offsetHeight : 0;
-    var bsTop = bs.getBoundingClientRect().top + window.scrollY;
-    var bsH = bs.offsetHeight;
-    /* align brand-strip bottom ~80px above viewport bottom */
-    var target = bsTop + bsH - vh + 80;
-    /* clamp: never scroll past hero (keep video visible at top) */
-    var heroH = vh; /* hero is 100vh */
-    target = Math.min(target, heroH - navH - 20);
+    /* target the CEO button itself, not just the section bottom */
+    var btn = bs.querySelector('a');
+    var anchor = btn || bs;
+    var anchorTop = anchor.getBoundingClientRect().top + window.scrollY;
+    var anchorH = anchor.offsetHeight;
+    /* place CEO button bottom ~80px above viewport bottom */
+    var target = anchorTop + anchorH - vh + 80;
+    /* clamp: never scroll past hero so video stays visible at top */
+    target = Math.min(target, vh - navH - 20);
     target = Math.max(target, 0);
     window.scrollTo({ top: target, behavior: 'smooth' });
   }
