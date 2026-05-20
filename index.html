@@ -291,9 +291,14 @@
        3. BRAND POSITIONING STRIP
     ═══════════════════════════════════════════════════════════ */
     #brand-strip {
-      padding: 5rem 4rem;
+      padding: 5rem 4rem 6rem;
       background: #f7f4f0;
       text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
     }
     .brand-strip-line {
       width: 40px;
@@ -961,7 +966,7 @@
       .hero-bg::after { background: linear-gradient(to bottom, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.12) 60%, rgba(0,0,0,0.4) 100%); }
       .hero-sub { color: #1a1a1a; text-shadow: 0 1px 0 rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.6); }
 
-      #brand-strip { padding: 4rem 2rem; }
+      #brand-strip { padding: 4rem 2rem; min-height: unset; justify-content: center; }
       #vertical-integration { padding: 5rem 2rem; }
       .vi-grid { grid-template-columns: 1fr; gap: 1.8rem; }
       #vision { grid-template-columns: 1fr; }
@@ -998,7 +1003,7 @@
       .hero-bg::after { background: linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.5) 100%); }
       #hero br { display: none; }
 
-      #brand-strip { padding: 3rem 1.5rem; }
+      #brand-strip { padding: 3rem 1.5rem; min-height: unset; justify-content: center; }
       .brand-strip-copy { font-size: 0.95rem; }
       #vertical-integration { padding: 4rem 1.5rem; }
 
