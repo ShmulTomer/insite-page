@@ -294,11 +294,6 @@
       padding: 5rem 4rem 6rem;
       background: #f7f4f0;
       text-align: center;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
     }
     .brand-strip-line {
       width: 40px;
@@ -1505,6 +1500,28 @@
 </script>
 
 <script>
+  /* ── About nav: scroll so video is at top, CEO button near bottom ── */
+  function scrollToAbout(e) {
+    e.preventDefault();
+    var bs = document.getElementById('brand-strip');
+    if (!bs) return;
+    var vh = window.innerHeight;
+    var nav = document.getElementById('nav');
+    var navH = nav ? nav.offsetHeight : 0;
+    var bsTop = bs.getBoundingClientRect().top + window.scrollY;
+    var bsH = bs.offsetHeight;
+    /* align brand-strip bottom ~80px above viewport bottom */
+    var target = bsTop + bsH - vh + 80;
+    /* clamp: never scroll past hero (keep video visible at top) */
+    var heroH = vh; /* hero is 100vh */
+    target = Math.min(target, heroH - navH - 20);
+    target = Math.max(target, 0);
+    window.scrollTo({ top: target, behavior: 'smooth' });
+  }
+  document.querySelectorAll('a[href="#brand-strip"]').forEach(function(a) {
+    a.addEventListener('click', scrollToAbout);
+  });
+
   document.querySelectorAll('a[href]').forEach(function(a){
     var h=a.getAttribute('href');
     if(!h.startsWith('mailto:')&&!h.startsWith('tel:')&&!h.startsWith('#')){
