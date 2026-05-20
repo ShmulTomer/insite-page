@@ -204,16 +204,14 @@
     }
     .hero-video {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       opacity: 0;
       transition: opacity 0.8s ease;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      transform: translate(-50%, -50%);
       object-fit: cover;
+      object-position: center 60%;
       filter: brightness(1.25) saturate(1.05);
     }
     .hero-bg::after {
@@ -260,12 +258,9 @@
       max-width: 560px;
       margin-bottom: 2.5rem;
       text-shadow:
-        1px 1px 0 rgba(255,255,255,0.9),
-        2px 2px 0 rgba(255,255,255,0.7),
-        3px 3px 0 rgba(255,255,255,0.45),
-        4px 4px 0 rgba(255,255,255,0.25),
-        5px 5px 0 rgba(255,255,255,0.12),
-        6px 8px 18px rgba(255,255,255,0.5);
+        0 1px 0 rgba(255,255,255,0.9),
+        0 2px 6px rgba(255,255,255,0.7),
+        0 4px 16px rgba(255,255,255,0.4);
     }
     .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; }
     .hero-scroll {
@@ -368,8 +363,89 @@
       background: #c8bfb5;
     }
 
+    /* ─── CEO Bio (brand strip) ───────────────────────────────── */
+    .brand-bio {
+      max-width: 700px;
+      margin: 3rem auto 0;
+      padding-top: 2.5rem;
+      border-top: 1px solid #d6cec5;
+      text-align: left;
+    }
+    .brand-bio-name {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #1a1a1a;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .brand-bio-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #b08a4a;
+      margin-bottom: 1.4rem;
+    }
+    .brand-bio-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: #5a5a5a;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
     /* ═══════════════════════════════════════════════════════════
-       5. PORTFOLIO PREVIEW
+       5. VERTICAL INTEGRATION
+    ═══════════════════════════════════════════════════════════ */
+    #vertical-integration {
+      background: #1a1a18;
+      padding: 7rem 4rem;
+    }
+    .vi-header {
+      max-width: 680px;
+      margin-bottom: 4.5rem;
+    }
+    .vi-header .label { color: #b08a4a; margin-bottom: 1rem; }
+    .vi-header .section-headline { color: #fff; margin-bottom: 1.5rem; }
+    .vi-header .body-copy { color: rgba(255,255,255,0.55); max-width: 580px; }
+    .vi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+    .vi-card {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .vi-card-num {
+      font-family: 'Gilda Display', Georgia, serif;
+      font-size: 1.8rem;
+      color: rgba(176,138,74,0.2);
+      margin-bottom: 1.1rem;
+      line-height: 1;
+    }
+    .vi-card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b08a4a;
+      margin-bottom: 0.8rem;
+    }
+    .vi-card p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.84rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       6. PORTFOLIO PREVIEW
     ═══════════════════════════════════════════════════════════ */
     #portfolio {
       padding: 7rem 4rem;
@@ -897,12 +973,14 @@
       .nav-hamburger span { background: rgba(255,255,255,0.9); }
       #nav.scrolled .nav-hamburger span { background: #1a1a1a; }
 
-      #hero { padding-top: 7rem; padding-bottom: 8rem; align-items: flex-start; }
+      #hero { padding-top: 8rem; padding-bottom: 8rem; align-items: flex-start; }
       .hero-content { padding: 0 2rem; max-width: 100%; }
-      .hero-bg::after { background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.45) 100%); }
-      .hero-sub { color: #ffffff; text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
+      .hero-bg::after { background: linear-gradient(to bottom, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.12) 60%, rgba(0,0,0,0.4) 100%); }
+      .hero-sub { color: #1a1a1a; text-shadow: 0 1px 0 rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.6); }
 
       #brand-strip { padding: 4rem 2rem; }
+      #vertical-integration { padding: 5rem 2rem; }
+      .vi-grid { grid-template-columns: repeat(2, 1fr); }
       #vision { grid-template-columns: 1fr; }
       .vision-image { display: none; }
       .vision-text { padding: 4rem 2rem; }
@@ -930,17 +1008,18 @@
       #nav { padding: 1rem 1.5rem; }
       .nav-logo img { height: 26px; }
 
-      #hero { padding-top: 6rem; padding-bottom: 4rem; min-height: 100svh; align-items: flex-start; }
+      #hero { padding-top: 7rem; padding-bottom: 4rem; min-height: 100svh; align-items: flex-start; }
       .hero-content { padding: 0 1.5rem; }
       .hero-headline { font-size: clamp(1.8rem, 8vw, 2.8rem); }
-      .hero-sub { font-size: 0.92rem; line-height: 1.65; color: #ffffff; text-shadow: 0 1px 8px rgba(0,0,0,0.65); }
-      .hero-bg::after { background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.55) 100%); }
+      .hero-sub { font-size: 0.92rem; line-height: 1.65; color: #1a1a1a; text-shadow: 0 1px 0 rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.6); }
+      .hero-bg::after { background: linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.5) 100%); }
       #hero br { display: none; }
 
       #brand-strip { padding: 3rem 1.5rem; }
       .brand-strip-copy { font-size: 0.95rem; }
+      #vertical-integration { padding: 4rem 1.5rem; }
+      .vi-grid { grid-template-columns: 1fr; }
 
-      #vision { padding: 0; }
       .vision-text { padding: 3rem 1.5rem; }
       .vision-pillars { grid-template-columns: 1fr; gap: 1.5rem; }
 
@@ -1000,6 +1079,7 @@
   <ul class="nav-links">
     <li><a href="#brand-strip">About</a></li>
     <li><a href="#vision">Vision</a></li>
+    <li><a href="#vertical-integration">Capabilities</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -1012,6 +1092,7 @@
 <div class="mobile-nav" role="dialog" aria-label="Mobile navigation" aria-modal="true">
   <a href="#brand-strip">About</a>
   <a href="#vision">Vision</a>
+  <a href="#vertical-integration">Capabilities</a>
   <a href="#portfolio">Portfolio</a>
   <a href="#contact">Contact</a>
   <div class="mobile-nav-divider"></div>
@@ -1047,8 +1128,11 @@
   <p class="brand-strip-copy">
     Based in Fort Lauderdale and active across Florida, we develop enduring places that balance design excellence, exceptional lifestyle, lasting value, and long-term responsibility to the community and the environment.
   </p>
-  <div style="display:flex;justify-content:center;margin-top:2.5rem;">
-    <a href="leadership.html" style="display:inline-block;padding:1.1rem 3rem;border:1px solid #1a1a1a;font-family:'Poppins',sans-serif;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:#1a1a1a;text-decoration:none;transition:background 0.3s,color 0.3s,border-color 0.3s;" onmouseover="this.style.background='#b08a4a';this.style.color='#fff';this.style.borderColor='#b08a4a'" onmouseout="this.style.background='transparent';this.style.color='#1a1a1a';this.style.borderColor='#1a1a1a'">Leadership Team</a>
+  <div class="brand-bio">
+    <div class="brand-bio-name">Ben Shmul</div>
+    <div class="brand-bio-title">Chief Executive Officer</div>
+    <p class="brand-bio-text">Ben Shmul sets the firm's strategic vision and oversees various aspects of the business across a diversified portfolio of residential, hospitality, and mixed-use assets. Under his leadership, InSite has built a reputation for executing complex, high-impact projects and transformative real estate developments, particularly along Florida's premier coastal markets.</p>
+    <p class="brand-bio-text">Ben has played a pivotal role in scaling InSite's vertically integrated platform, which provides full lifecycle control from sourcing and underwriting through execution and operations — enabling the firm to enhance returns, mitigate risk, and maintain consistent quality across its portfolio.</p>
   </div>
 </section>
 
@@ -1084,7 +1168,69 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     5. PORTFOLIO PREVIEW
+     5. VERTICAL INTEGRATION
+════════════════════════════════════════════ -->
+<section id="vertical-integration" aria-label="Vertical Integration — InSite Capabilities">
+  <div class="vi-header">
+    <div class="label" style="color:#b08a4a;">Vertical Integration</div>
+    <h2 class="section-headline" style="color:#fff;margin-top:1rem;">Full-Spectrum Control.<br>Every Phase. Every Asset.</h2>
+    <p class="body-copy" style="margin-top:1.5rem;color:rgba(255,255,255,0.55);">InSite's vertically integrated platform spans every phase of the real estate lifecycle — from initial opportunity identification through long-term asset operation. This full-spectrum capability enables InSite to maintain quality control, optimize returns, and respond decisively to market conditions at every stage of a project.</p>
+  </div>
+  <div class="vi-grid">
+
+    <div class="vi-card">
+      <div class="vi-card-num">01</div>
+      <div class="vi-card-title">Acquisitions &amp; Disposition</div>
+      <p>InSite maintains an active acquisitions program targeting hospitality, mixed-use, and residential assets across Florida's coastal and urban markets. Each opportunity is evaluated through a disciplined underwriting process that accounts for market dynamics, physical condition, entitlement potential, and repositioning upside. On the disposition side, InSite manages strategic exits with precision to maximize portfolio value and capital efficiency.</p>
+    </div>
+
+    <div class="vi-card">
+      <div class="vi-card-num">02</div>
+      <div class="vi-card-title">Finance</div>
+      <p>InSite structures each investment with a capital stack tailored to the project's specific risk profile, hold period, and return objectives. The firm maintains active relationships with institutional equity partners, family offices, and regional and national lenders. InSite's finance team oversees debt placement, equity management, financial modeling, reporting, and investor relations across all active investments.</p>
+    </div>
+
+    <div class="vi-card">
+      <div class="vi-card-num">03</div>
+      <div class="vi-card-title">Development Strategy</div>
+      <p>InSite leads the full development process from feasibility and site selection through entitlement, programming, and project launch. The firm applies a market-driven approach to product positioning — calibrating unit mix, density, use composition, and phasing strategies to maximize both design quality and commercial performance. InSite's development expertise spans ground-up construction, adaptive reuse, and complex mixed-use assemblages.</p>
+    </div>
+
+    <div class="vi-card">
+      <div class="vi-card-num">04</div>
+      <div class="vi-card-title">Architecture &amp; Design</div>
+      <p>InSite provides active design leadership throughout each project's development, working closely with leading architects, interior designers, and landscape architects to ensure the built environment reflects the firm's standards for quality and lifestyle. InSite's involvement encompasses concept development, design management, material selection, and brand identity — with a focus on creating spaces that perform as well aesthetically as they do operationally.</p>
+    </div>
+
+    <div class="vi-card">
+      <div class="vi-card-num">05</div>
+      <div class="vi-card-title">Construction &amp; Redevelopment</div>
+      <p>InSite manages construction processes across both ground-up development and comprehensive property redevelopments. The firm works with experienced general contractors while maintaining direct oversight of scheduling, budgeting, and quality assurance. InSite's redevelopment capabilities allow the firm to reposition and modernize existing assets while preserving the character and long-term value that define each property.</p>
+    </div>
+
+    <div class="vi-card">
+      <div class="vi-card-num">06</div>
+      <div class="vi-card-title">Asset Management</div>
+      <p>InSite actively manages its portfolio to protect and enhance value over the full hold period. Asset management responsibilities include performance monitoring, capital improvement planning, lease and contract oversight, and strategic positioning for disposition or refinancing. InSite works closely with operating partners and third-party managers to ensure alignment between day-to-day execution and long-term investment objectives.</p>
+    </div>
+
+    <div class="vi-card">
+      <div class="vi-card-num">07</div>
+      <div class="vi-card-title">Operations Management</div>
+      <p>InSite maintains direct oversight of hospitality and residential operations across its portfolio, whether managed in-house or through third-party operators. The firm's operational expertise spans hotel management, resort operations, mixed-use programming, and residential services — ensuring that each asset performs to brand standard and delivers the lifestyle experience that defines the InSite portfolio.</p>
+    </div>
+
+    <div class="vi-card">
+      <div class="vi-card-num">08</div>
+      <div class="vi-card-title">Historic Preservation</div>
+      <p>InSite has significant experience acquiring, restoring, and repositioning historically significant properties. The firm approaches adaptive reuse with deep respect for the architectural and cultural character of each asset, working within preservation guidelines to restore historic structures while elevating their performance and livability. InSite's historic projects have contributed meaningfully to the revitalization of urban neighborhoods and the preservation of South Florida's architectural heritage.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     6. PORTFOLIO PREVIEW
 ════════════════════════════════════════════ -->
 <section id="portfolio">
   <div class="portfolio-header">
@@ -1258,6 +1404,7 @@
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="#brand-strip">About</a>
         <a href="#vision">Vision</a>
+        <a href="#vertical-integration">Capabilities</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
         <a href="https://www.paycomonline.net/v4/ats/web.php/portal/ED29350392643C6DEF5D9DC75DA5F36E/career-page" target="_blank" rel="noopener" class="career-link" aria-label="Career Opportunities (opens in new tab)">Career Opportunities<span class="sr-only"> (opens in new tab)</span></a>
@@ -1365,7 +1512,7 @@
   }
 
   // Smooth active state for nav links on scroll
-  const sections = ['about', 'vision', 'portfolio', 'contact'];
+  const sections = ['about', 'vision', 'vertical-integration', 'portfolio', 'contact'];
   const navLinks = document.querySelectorAll('.nav-links a');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
