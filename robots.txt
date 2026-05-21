@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /rider_unpacked/
+
+Sitemap: https://insiteus.com/sitemap.xml
