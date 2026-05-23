@@ -49,6 +49,8 @@
     }
   }
   </script>
+  <!-- Preload hero poster so it appears instantly before video loads -->
+  <link rel="preload" href="images/hero-poster.jpg" as="image" />
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="images/insite-logo.svg" />
   <link rel="icon" type="image/png" href="images/insite-logo.png" />
@@ -250,7 +252,7 @@
       position: absolute;
       inset: 0;
       overflow: hidden;
-      background: url('images/hero-poster.jpg') center center / cover no-repeat;
+      background: url('images/hero-poster.jpg') center center / cover no-repeat #0a1218;
     }
     .hero-video {
       position: absolute;
