@@ -5,3 +5,10 @@ website-v2.html
 website-v3.html
 website-v4.html
 website-mockup.html
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
