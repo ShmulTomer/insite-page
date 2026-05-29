@@ -252,7 +252,9 @@
       position: absolute;
       inset: 0;
       overflow: hidden;
-      background: url('images/hero-poster.jpg') center center / cover no-repeat #0a1218;
+      /* LQIP: 64x36 inline placeholder, zero network request — shows instantly */
+      /* Full poster loads via <video poster> + preload hint above              */
+      background: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD//gAQTGF2YzYyLjI4LjEwMQD/2wBDAAgeHiMeIykpKSkpKTAtMDIyMjAwMDAyMjI2NjY/Pz82NjYyMjY2PDw/P0VHRUFBP0FHR0tLS1paVlZpaWyBgZv/xABoAAACAwEBAQAAAAAAAAAAAAAGBQMEAgcAAQEAAwEBAQAAAAAAAAAAAAAAAgABBAMFEAACAgIBAwUBAAAAAAAAAAAAAQIRAxIhFGEygUEEEyIxEQEBAQEAAAAAAAAAAAAAAAAAARES/8AAEQgAJABAAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8A7P8AYiF5IgHbI7Z53NadG7mis5IDdmVnNl5o9gy2RFaAN5qZU6juFzV2OhWiOznvUdyB55B80GwVZMkYC9/IigDebdkcm2zZjKM550KnldA9L9VRc0dB4qJzc2YdChpo8mJMaLyQn3N7hOZT/AxjzDkDWGMPD0EQdg+QpvgE4eQVewqRZELhnkFwooMzZ9ZgQv/Z') center center / cover no-repeat #0a1218;
     }
     .hero-video {
       position: absolute;
