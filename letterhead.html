@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>InSite Group Letterhead</title>
+  <style>
+    /* ─── PRINT PAGE SETUP ───────────────────────────────────────── */
+    @page {
+      size: letter;          /* 8.5" x 11" */
+      margin: 0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #e8e3dc;  /* screen preview background */
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* ─── SCREEN PREVIEW WRAPPER ─────────────────────────────────── */
+    .screen-only {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 1.5rem;
+      width: 8.5in;
+    }
+    .screen-only .print-btn {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.4rem;
+      background: #B08A4A;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ─── LETTER PAGE ─────────────────────────────────────────────── */
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      background: #fff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────────── */
+    .lh-header {
+      padding: 0.5in 0.75in 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .lh-logo img {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+
+    .lh-contact {
+      text-align: right;
+      font-size: 8.5pt;
+      color: #6b6b6b;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+    .lh-contact a {
+      color: #B08A4A;
+      text-decoration: none;
+    }
+
+    /* Gold rule under header */
+    .lh-rule {
+      margin: 0.22in 0.75in 0;
+      border: none;
+      border-top: 1.5px solid #B08A4A;
+    }
+
+    /* ─── BODY AREA ───────────────────────────────────────────────── */
+    .lh-body {
+      padding: 0.45in 0.75in;
+      flex: 1;
+    }
+
+    .lh-date {
+      font-size: 9.5pt;
+      color: #888;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3in;
+    }
+
+    .lh-recipient {
+      font-size: 10pt;
+      color: #1a1a1a;
+      line-height: 1.6;
+      margin-bottom: 0.3in;
+    }
+
+    .lh-salutation {
+      font-size: 10.5pt;
+      color: #1a1a1a;
+      margin-bottom: 0.25in;
+    }
+
+    .lh-paragraph {
+      font-size: 10.5pt;
+      color: #333;
+      line-height: 1.75;
+      margin-bottom: 0.18in;
+    }
+
+    .lh-closing {
+      font-size: 10.5pt;
+      color: #1a1a1a;
+      margin-top: 0.35in;
+      line-height: 1.6;
+    }
+
+    .lh-signature-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 13pt;
+      color: #1a1a1a;
+      letter-spacing: 0.02em;
+      margin-top: 0.55in;
+    }
+
+    .lh-signature-title {
+      font-size: 8pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #B08A4A;
+      margin-top: 3px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    .lh-footer {
+      padding: 0 0.75in 0.35in;
+    }
+
+    .lh-footer-rule {
+      border: none;
+      border-top: 1px solid #e0d8cf;
+      margin-bottom: 0.12in;
+    }
+
+    .lh-footer-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #bbb;
+      letter-spacing: 0.04em;
+    }
+
+    .lh-footer-text span a {
+      color: #B08A4A;
+      text-decoration: none;
+    }
+
+    /* ─── PRINT OVERRIDES ─────────────────────────────────────────── */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .screen-only { display: none; }
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="screen-only">
+  InSite Group &mdash; Letterhead Template &middot; 8.5 &times; 11 in
+  <br>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="lh-header">
+    <div class="lh-logo">
+      <img src="images/insite-logo.svg" alt="InSite Group" />
+    </div>
+    <div class="lh-contact">
+      910 SE 17th Street, Fort Lauderdale, FL 33316<br>
+      954.358.6800 &nbsp;&middot;&nbsp; <a href="mailto:info@insiteus.com">info@insiteus.com</a><br>
+      <a href="https://insiteus.com">insiteus.com</a>
+    </div>
+  </header>
+
+  <hr class="lh-rule" />
+
+  <!-- BODY -->
+  <div class="lh-body">
+
+    <div class="lh-date">May 27, 2026</div>
+
+    <div class="lh-recipient">
+      [Recipient Name]<br>
+      [Title]<br>
+      [Company]<br>
+      [Address Line 1]<br>
+      [City, State ZIP]
+    </div>
+
+    <div class="lh-salutation">Dear [Name],</div>
+
+    <p class="lh-paragraph">
+      [Begin your letter here. This template is formatted to match InSite Group's brand standards.
+      Replace this placeholder text with your correspondence. The layout maintains proper business
+      letter margins and typography throughout.]
+    </p>
+
+    <p class="lh-paragraph">
+      [Second paragraph. The body copy is set at 10.5pt with 1.75 line spacing for optimal
+      readability in both print and digital formats.]
+    </p>
+
+    <p class="lh-paragraph">
+      [Third paragraph or closing remarks.]
+    </p>
+
+    <div class="lh-closing">
+      Sincerely,
+      <div class="lh-signature-name">Ben Shmul</div>
+      <div class="lh-signature-title">Founder &amp; CEO, InSite Group</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="lh-footer">
+    <hr class="lh-footer-rule" />
+    <div class="lh-footer-text">
+      <span>InSite Group &nbsp;&middot;&nbsp; Real Estate Development</span>
+      <span>910 SE 17th Street &nbsp;&middot;&nbsp; Fort Lauderdale, FL 33316</span>
+      <span><a href="https://insiteus.com">insiteus.com</a></span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

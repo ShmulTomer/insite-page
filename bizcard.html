@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>InSite Group Business Card</title>
+  <style>
+    /* ─── PRINT SETUP ────────────────────────────────────────────── */
+    @page {
+      size: 3.5in 2in;
+      margin: 0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── SCREEN PREVIEW ─────────────────────────────────────────── */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ddd6cc;
+      padding: 2rem;
+    }
+
+    .screen-only {
+      max-width: 900px;
+      margin: 0 auto 2rem;
+    }
+    .screen-only h2 {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: #1a1a1a;
+      margin-bottom: 0.3rem;
+    }
+    .screen-only p {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 1rem;
+    }
+    .print-btn {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      background: #B08A4A;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      margin-bottom: 2rem;
+    }
+    .print-btn:hover { background: #9a7a3e; }
+
+    .cards-layout {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card-set {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .card-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #B08A4A;
+    }
+
+    /* ─── CARD DIMENSIONS ─────────────────────────────────────────── */
+    .card {
+      width: 3.5in;
+      height: 2in;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ════════════════════════════════════════
+       FRONT — Dark Navy
+    ════════════════════════════════════════ */
+    .card-front {
+      background: #0a1218;
+    }
+
+    /* Gold accent bar at top */
+    .card-front::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: #B08A4A;
+    }
+
+    .card-front-inner {
+      position: absolute;
+      inset: 0;
+      padding: 0.22in 0.28in;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Logo area */
+    .cf-logo img {
+      height: 22px;
+      width: auto;
+      display: block;
+    }
+
+    /* Name + title block */
+    .cf-name-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.08in 0;
+    }
+
+    .cf-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 14pt;
+      color: #ffffff;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .cf-rule {
+      width: 28px;
+      height: 1.5px;
+      background: #B08A4A;
+      margin: 6px 0;
+    }
+
+    .cf-title {
+      font-size: 7.5pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #B08A4A;
+    }
+
+    /* Contact row */
+    .cf-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cf-contact-line {
+      font-size: 7.5pt;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.03em;
+    }
+
+    .cf-contact-line span {
+      color: #B08A4A;
+      margin-right: 5px;
+      font-size: 6.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* Website bottom right */
+    .cf-web {
+      position: absolute;
+      bottom: 0.18in;
+      right: 0.28in;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+      text-transform: lowercase;
+    }
+
+    /* ════════════════════════════════════════
+       BACK — Clean Cream
+    ════════════════════════════════════════ */
+    .card-back {
+      background: #f7f4f0;
+    }
+
+    /* Thin gold border */
+    .card-back::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1.5px solid #e0d0b0;
+      pointer-events: none;
+    }
+
+    /* Subtle dot grid (decorative) */
+    .card-back-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(176,138,74,0.08) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+
+    .card-back-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .cb-logo img {
+      height: 30px;
+      width: auto;
+      display: block;
+    }
+
+    .cb-rule {
+      width: 32px;
+      height: 1px;
+      background: #B08A4A;
+    }
+
+    .cb-tagline {
+      font-size: 6.5pt;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #B08A4A;
+    }
+
+    .cb-address {
+      font-size: 6.5pt;
+      color: #aaa;
+      letter-spacing: 0.06em;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ─── PRINT OVERRIDES ─────────────────────────────────────────── */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .screen-only { display: none; }
+
+      /* Print one card per page at exact size */
+      .card {
+        page-break-after: always;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      /* Hide all but the cards */
+      .cards-layout { display: block; margin: 0; }
+      .card-set { display: block; }
+      .card-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SCREEN INSTRUCTIONS -->
+<div class="screen-only">
+  <h2>Business Cards</h2>
+  <p>InSite Group &middot; Standard 3.5 &times; 2 in &middot; Front &amp; Back</p>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+  <p style="color:#aaa;font-size:0.65rem;letter-spacing:0.08em;text-transform:none;margin-top:-0.5rem;">
+    To print: File &rarr; Print &rarr; set paper size to 3.5&times;2 in, scale 100%, no margins. Send to a print shop as PDF for professional results.
+  </p>
+</div>
+
+<!-- CARDS LAYOUT (SCREEN PREVIEW) -->
+<div class="cards-layout">
+
+  <!-- FRONT -->
+  <div class="card-set">
+    <div class="card-label">Front</div>
+    <div class="card card-front">
+      <div class="card-front-inner">
+
+        <!-- Logo (white version) -->
+        <div class="cf-logo">
+          <img src="images/insite-logo-white.svg" alt="InSite Group" />
+        </div>
+
+        <!-- Name & Title -->
+        <div class="cf-name-block">
+          <div class="cf-name">Ben Shmul</div>
+          <div class="cf-rule"></div>
+          <div class="cf-title">Founder &amp; CEO</div>
+        </div>
+
+        <!-- Contact details -->
+        <div class="cf-contact">
+          <div class="cf-contact-line"><span>T</span>954.358.6800</div>
+          <div class="cf-contact-line"><span>E</span>ben@insiteus.com</div>
+        </div>
+
+        <!-- Website -->
+        <div class="cf-web">insiteus.com</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK -->
+  <div class="card-set">
+    <div class="card-label">Back</div>
+    <div class="card card-back">
+      <div class="card-back-dots"></div>
+      <div class="card-back-inner">
+        <div class="cb-logo">
+          <img src="images/insite-logo.svg" alt="InSite Group" />
+        </div>
+        <div class="cb-rule"></div>
+        <div class="cb-tagline">Real Estate Development</div>
+        <div class="cb-address">
+          910 SE 17th Street &middot; Fort Lauderdale, FL 33316<br>
+          insiteus.com
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
